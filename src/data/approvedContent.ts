@@ -103,23 +103,6 @@ export const LEADERSHIP_TEAM: TeamMember[] = [
   }
 ];
 
-export const CORE_ENGINEERING_TEAM: TeamMember[] = [
-  {
-    name: 'Piyush Kumar Singh',
-    role: 'Core Engineering Team',
-    focus: 'Electronic Control Unit (ECPU) Design and Power Management.'
-  },
-  {
-    name: 'Rishi S.S.',
-    role: 'Core Engineering Team',
-    focus: 'Dual-Axis Motorized Mount, Azimuth & Altitude Mechanical Drive.'
-  },
-  {
-    name: 'Venkatesh K.S.',
-    role: 'Core Engineering Team',
-    focus: 'Computer Vision Inference, Camera Ingress, and Sensor Calibration.'
-  }
-];
 
 export const CAPABILITIES: CapabilityItem[] = [
   {
