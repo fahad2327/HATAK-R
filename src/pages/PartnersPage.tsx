@@ -76,6 +76,44 @@ export const PartnersPage: React.FC = () => {
               </div>
             ))}
           </div>
+
+          {/* Official DPIIT Certificate Showcase */}
+          <div className="mt-10 p-6 md:p-8 bg-brand-cool-grey-light/40 border border-brand-border rounded-sm">
+            <div className="flex flex-col lg:flex-row items-center gap-8">
+              <div className="lg:w-1/2 rounded-sm overflow-hidden border border-brand-border shadow-elevated bg-white">
+                <img
+                  src="/images/dpiit-certificate.png"
+                  alt="DPIIT Certificate of Recognition DIPP250915"
+                  className="w-full h-auto object-cover"
+                />
+              </div>
+              <div className="lg:w-1/2 space-y-4 text-xs">
+                <div className="inline-flex items-center gap-2 px-2.5 py-1 bg-emerald-50 border border-emerald-300 text-emerald-900 rounded-sm font-mono font-semibold">
+                  <span>✓ VERIFIED GOVERNMENT RECOGNITION</span>
+                </div>
+                <h3 className="text-xl font-bold text-brand-navy">
+                  Government of India — DPIIT Startup Recognition
+                </h3>
+                <p className="text-brand-slate leading-relaxed">
+                  Certificate No: <strong>DIPP250915</strong> issued by the Department for Promotion of Industry and Internal Trade, Ministry of Commerce and Industry. Valid through June 2035 for HATAK R NON LETHAL SECURITY SOLUTIONS PRIVATE LIMITED.
+                </p>
+                <div className="p-3 bg-white border border-brand-border rounded-sm font-mono space-y-1 text-[11px]">
+                  <div className="flex justify-between">
+                    <span className="text-brand-slate">Certificate No:</span>
+                    <span className="font-bold text-brand-navy">DIPP250915</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-brand-slate">Issue Date:</span>
+                    <span className="text-brand-navy">19-03-2026</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-brand-slate">Sector:</span>
+                    <span className="text-brand-navy">Security Solutions / Home Security</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </Container>
       </section>
 

@@ -38,6 +38,31 @@ export const TechnologyPage: React.FC = () => {
             </p>
           </div>
           <ArchitectureDiagram />
+
+          {/* Operational Workflow Blueprint */}
+          <div className="mt-8 p-6 bg-white border border-brand-border rounded-sm shadow-subtle">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4 pb-3 border-b border-brand-border">
+              <div>
+                <span className="text-xs font-mono font-bold uppercase text-brand-red">
+                  Decision Tree & Aiming Protocol
+                </span>
+                <h3 className="text-lg font-bold text-brand-navy">
+                  Operational Control Flowchart
+                </h3>
+              </div>
+              <Badge status="Demonstrated" label="System Architecture Flow" />
+            </div>
+            <div className="rounded-sm overflow-hidden border border-brand-border bg-white">
+              <img
+                src="/images/workflow.png"
+                alt="HATAK R Operational Workflow: Input -> Decision -> Aiming -> Action"
+                className="w-full h-auto object-cover"
+              />
+            </div>
+            <p className="mt-3 text-xs text-brand-slate leading-relaxed">
+              <strong>Figure:</strong> Sequential pipeline: 1. Input & Detection (Optical RTSP to ECPU) &rarr; 2. Decision Phase (CNN Person Classification & Authorization Check) &rarr; 3. Aiming Phase (Azimuth & Altitude Motor Trajectory) &rarr; 4. Action Phase (Non-Lethal Response Trigger with Interlocks).
+            </p>
+          </div>
         </Container>
       </section>
 

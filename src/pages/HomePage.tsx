@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, CheckCircle2, Eye } from 'lucide-react';
+import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import { Container } from '../components/layout/Container';
 import { Button } from '../components/ui/Button';
 import { Badge } from '../components/ui/Badge';
@@ -102,43 +102,28 @@ export const HomePage: React.FC = () => {
                   <Badge status="Demonstrated" />
                 </div>
 
-                {/* Technical Drawing Canvas */}
-                <div className="p-6 bg-white space-y-6">
-                  {/* Schematic visual box */}
-                  <div className="relative border border-dashed border-brand-slate/40 rounded-sm p-6 bg-brand-cool-grey-light/30">
-                    <div className="absolute top-2 left-2 text-[10px] font-mono text-brand-slate uppercase">
-                      FIG 1.0 — DUAL-AXIS MOUNT & ECU BUS
+                {/* Authentic Prototype Visual */}
+                <div className="p-4 bg-white space-y-4">
+                  <div className="relative rounded-sm overflow-hidden border border-brand-border bg-brand-cool-grey-light/30">
+                    <img
+                      src="/images/prototype.png"
+                      alt="HATAK R Working Prototype Unit"
+                      className="w-full h-64 object-cover object-center"
+                    />
+                    <div className="absolute bottom-2 left-2 right-2 bg-brand-navy/90 backdrop-blur-sm text-white px-3 py-1.5 rounded-sm text-[11px] font-mono flex items-center justify-between">
+                      <span>PROTOTYPE TEST RIG</span>
+                      <span className="text-emerald-400">LAB BENCH VERIFIED</span>
                     </div>
+                  </div>
 
-                    <div className="my-8 flex flex-col items-center justify-center space-y-4 text-center">
-                      <div className="relative">
-                        <div className="w-24 h-24 rounded-full border-2 border-brand-navy flex items-center justify-center bg-white shadow-sm">
-                          <Eye className="w-10 h-10 text-brand-navy" />
-                        </div>
-                        <div className="absolute -top-2 -right-2 px-2 py-0.5 bg-brand-red text-white text-[10px] font-mono font-bold rounded-sm">
-                          OPTICAL SENSOR
-                        </div>
-                      </div>
-
-                      <div className="w-32 h-6 border-x-2 border-b-2 border-brand-navy flex items-center justify-center bg-brand-cool-grey-light">
-                        <span className="text-[10px] font-mono font-semibold text-brand-navy">PAN / TILT DRIVE</span>
-                      </div>
-
-                      <div className="w-48 p-2.5 bg-brand-navy text-white text-xs rounded-sm font-mono flex items-center justify-between">
-                        <span>ECU PROCESSOR BUS</span>
-                        <span className="text-emerald-400">ACTIVE</span>
-                      </div>
+                  <div className="grid grid-cols-2 gap-2 text-[11px] font-mono border-t border-brand-border pt-3">
+                    <div>
+                      <span className="text-brand-slate block">Patent Application:</span>
+                      <span className="font-semibold text-brand-navy">202141014878</span>
                     </div>
-
-                    <div className="grid grid-cols-2 gap-2 text-[11px] font-mono border-t border-brand-border pt-3">
-                      <div>
-                        <span className="text-brand-slate block">Azimuth Rotation:</span>
-                        <span className="font-semibold text-brand-navy">360° Continuous</span>
-                      </div>
-                      <div>
-                        <span className="text-brand-slate block">Elevation Travel:</span>
-                        <span className="font-semibold text-brand-navy">-30° to +90°</span>
-                      </div>
+                    <div>
+                      <span className="text-brand-slate block">DPIIT Recognition:</span>
+                      <span className="font-semibold text-brand-navy">DIPP250915</span>
                     </div>
                   </div>
 

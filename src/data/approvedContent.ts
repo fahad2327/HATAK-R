@@ -1,11 +1,9 @@
 /**
- * HATAK R™ — Approved Content & Factual Registry
+ * HATAK R™ — Official Factual Registry & Verified Corporate Disclosures
  * 
- * Strict Content Governance:
- * - Capabilities are strictly marked: "Demonstrated", "In Development", or "Planned".
- * - Patent status is explicitly "Application Filed (Pending Review)", never "Granted".
- * - No fabricated client logos, testimonials, or simulated live video feeds.
- * - Items needing founder sign-off are marked with TODO tags.
+ * Company: HATAK R NON LETHAL SECURITY SOLUTIONS PRIVATE LIMITED
+ * DPIIT Certificate: DIPP250915
+ * Patent Application: 202141014878
  */
 
 export interface CapabilityItem {
@@ -33,20 +31,48 @@ export interface MilestoneItem {
   verificationStatus: 'Completed' | 'In Progress' | 'Roadmap';
 }
 
+export interface TeamMember {
+  name: string;
+  role: string;
+  affiliation?: string;
+  focus: string;
+}
+
 export const COMPANY_METADATA = {
   name: 'HATAK R™',
-  tagline: 'AI-Assisted Intelligent Perimeter Security',
+  legalEntity: 'HATAK R NON LETHAL SECURITY SOLUTIONS PRIVATE LIMITED',
+  incorporationDate: '05-06-2025',
+  tagline: 'AI-Assisted Intelligent Non-Lethal Security Systems',
   productConcept: 'Detect — Decide — Defend',
-  corePhilosophy: 'Engineering-led situational awareness combining multi-camera edge vision, intelligent classification, and human-verified response workflows.',
+  corePhilosophy: 'Redefining intelligent non-lethal perimeter defense through multi-camera edge machine vision, dual-motor 360° targeting, and an electronic control unit.',
+  academicAffiliation: {
+    institution: 'Velammal Institute of Technology',
+    location: 'Chennai - Kolkata Highway, Panchetti, Ponneri - 601 204, Tamil Nadu, India',
+    accreditation: "Institution's Innovation Council (IIC) | NBA & NAAC 'A' Grade",
+  },
+  dpiitRecognition: {
+    certificateNo: 'DIPP250915',
+    issueDate: '19-03-2026',
+    validUpto: '04-06-2035',
+    ministry: 'Ministry of Commerce & Industry, Government of India (#startupindia)',
+    industry: 'Security Solutions / Home Security Solutions',
+  },
   ipStatus: {
-    patentDescription: 'Indian Patent Application filed for multi-camera motorized tracking and classification mechanism.',
-    patentNotice: 'Patent Pending. Application filed; not yet granted. Public technical disclosure limited to published patent claims.',
-    regulatoryNotice: 'All response workflows require human operator authorization. HATAK R™ does not support autonomous physical force.',
+    patentNumber: '202141014878',
+    patentDescription: 'Indian Patent Application filed for automated motorized tracking, CNN-based classification, and non-lethal security targeting mechanism.',
+    patentNotice: 'Patent Application No: 202141014878 (Patent Pending). Technical Domains: Applied Mechanics | Machine Vision | Automated Security Systems.',
+    regulatoryNotice: 'All response workflows require human operator authorization. HATAK R™ does not support unauthorized autonomous physical force.',
+  },
+  pricing: {
+    deviceRange: '₹50,000 – ₹75,000 per unit',
+    amcRange: '₹5,000 – ₹10,000 per year',
+    model: 'Hybrid Revenue Model: Hardware Sales + AI Software + AMC Service Licensing',
   },
   contactCoordinates: {
-    email: 'contact@hatak-r.com', // Placeholder / configurable
+    email: 'contact@hatak-r.com',
+    teamLeadEmail: 'fahad@hatak-r.com',
     technicalDesk: 'engineering@hatak-r.com',
-    location: 'Bengaluru / Hyderabad, India', // Founder approval note
+    location: 'Chennai, Tamil Nadu, India',
     businessInquiryType: [
       'Industrial Perimeter Pilot',
       'Technology & Integration Partnership',
@@ -57,136 +83,174 @@ export const COMPANY_METADATA = {
   }
 };
 
+export const LEADERSHIP_TEAM: TeamMember[] = [
+  {
+    name: 'Dr. R. Partheepan',
+    role: 'Founder & Director',
+    affiliation: 'Velammal Institute of Technology',
+    focus: 'Applied Mechanics, Automated Security Architecture, and Strategic Research Leadership.'
+  },
+  {
+    name: 'Dr. S.S. Manikandan',
+    role: 'Co-Founder & Director',
+    affiliation: 'Velammal Institute of Technology',
+    focus: 'Machine Vision Systems, Mechatronics Integration, and Institutional Incubation.'
+  },
+  {
+    name: 'Fahad H.',
+    role: 'Team Lead & Systems Architect',
+    focus: 'Hardware/Software Co-Design, Edge Neural Computing, and Prototype Engineering.'
+  }
+];
+
+export const CORE_ENGINEERING_TEAM: TeamMember[] = [
+  {
+    name: 'Piyush Kumar Singh',
+    role: 'Core Engineering Team',
+    focus: 'Electronic Control Unit (ECPU) Design and Power Management.'
+  },
+  {
+    name: 'Rishi S.S.',
+    role: 'Core Engineering Team',
+    focus: 'Dual-Axis Motorized Mount, Azimuth & Altitude Mechanical Drive.'
+  },
+  {
+    name: 'Venkatesh K.S.',
+    role: 'Core Engineering Team',
+    focus: 'Computer Vision Inference, Camera Ingress, and Sensor Calibration.'
+  }
+];
+
 export const CAPABILITIES: CapabilityItem[] = [
   {
     id: 'edge-vision',
     title: 'Multi-Camera Machine Vision & CNN Person Classification',
     category: 'vision',
     status: 'Demonstrated',
-    summary: 'Optical sensor feed processed through convolutional neural networks to classify human presence against background environmental motion.',
-    technicalDetails: 'Trained on high-contrast industrial perimeter scenarios to minimize false triggers caused by vegetation, animals, and weather variances.'
+    summary: 'Wall-mounted and perimeter IP camera feeds processed by convolutional neural networks to classify authorized personnel vs. unauthorized intruders in real-time.',
+    technicalDetails: 'Trained to eliminate false triggers from vegetation, weather, and wildlife, delivering instantaneous target vector coordinates.'
   },
   {
     id: 'motorized-mount',
-    title: 'Dual-Axis Motorized Pan/Tilt Targeting Mount',
+    title: 'Dual-Motor Pan/Tilt Platform (360° Coverage)',
     category: 'hardware',
     status: 'Demonstrated',
-    summary: 'Precision closed-loop electromechanical mount providing rapid re-orientation toward target vectors identified by perimeter sensors.',
-    technicalDetails: 'Driven by microstepping motor drivers and industrial encoder feedback for repeatable angular positioning.'
+    summary: 'Precision electromechanical platform featuring independent azimuth rotation and altitude/elevation movement for continuous 360° hemispherical tracking.',
+    technicalDetails: 'High-torque micro-stepping drives and encoder feedback ensure rapid slewing and locked alignment with detected intruder coordinates.'
   },
   {
     id: 'ecu-controller',
-    title: 'Dedicated Embedded Electronic Control Unit (ECU)',
+    title: 'Electronic Control Unit (ECPU) & Power Management',
     category: 'hardware',
     status: 'Demonstrated',
-    summary: 'Custom controller housing edge inference processor, I/O relays, power management, and fail-safe watchdog circuits.',
-    technicalDetails: 'Isolated low-voltage bus architecture with hardware interlocks ensuring motion occurs only under verified system heartbeat.'
+    summary: 'Centralized edge processing and power management system managing sensor ingress, motor trajectory commands, and fail-safe interlocks.',
+    technicalDetails: 'Isolated industrial bus with hardware watchdogs and external power regulation supporting 24/7 continuous duty cycles.'
   },
   {
     id: 'central-monitoring',
-    title: 'Centralized Multi-Node Coordination Console',
+    title: 'Centralized Control & Multi-Unit Integration',
     category: 'network',
     status: 'In Development',
-    summary: 'Distributed mesh reporting status, target vector coordinates, and system telemetry across multi-camera perimeters.',
-    technicalDetails: 'Encrypted telemetry bus linking field units to a central operations terminal with low latency telemetry transport.'
+    summary: 'Enables central monitoring and coordination across multiple wall-mounted camera nodes and motorized targeting units across large premises.',
+    technicalDetails: 'Low-latency telemetry bus connecting remote perimeter units to the central security monitoring console.'
   },
   {
     id: 'operator-workflow',
-    title: 'Human-in-the-Loop Incident Verification Pipeline',
+    title: 'Decision & Aiming Phase Verification Loop',
     category: 'workflow',
     status: 'In Development',
-    summary: 'Operator verification system requiring authenticated human confirmation before escalating alerts or initiating deterrent signals.',
-    technicalDetails: 'Audit-logged review screen showing synchronized optical capture, classification confidence, and timestamped operator approval.'
+    summary: 'Sequential Detect → Decide → Aim → Defend pipeline ensuring authenticated review before escalations or deterrent triggers are dispatched.',
+    technicalDetails: 'Audited operator console showing synchronous optical capture, CNN classification confidence, and timestamped operator confirmation.'
   },
   {
     id: 'non-lethal-deterrent',
-    title: 'Non-Lethal Deterrent Interface Architecture',
+    title: 'Non-Lethal Response Mechanism Interface',
     category: 'workflow',
     status: 'Planned Architecture',
-    summary: 'Conceptual interface for directional acoustic warning, high-lumen optical disruption, or non-lethal repellent payloads.',
-    technicalDetails: 'Hardware and software interlocks require dual-key human authorization and rigorous site-specific legal compliance before activation.'
+    summary: 'Externally powered non-lethal deterrent mechanism (rubber projectile deterrent / directional warning) engineered for controlled-access property protection.',
+    technicalDetails: 'Requires strict regulatory clearance, hardware interlocks, and explicit authorized site permissions prior to field deployment.'
   }
 ];
 
 export const INDUSTRIES: IndustryUseCase[] = [
   {
     id: 'industrial-warehousing',
-    name: 'Industrial Logistics & Warehouses',
+    name: 'Industrial Perimeters & Storage Yards',
     sector: 'Supply Chain & Manufacturing',
-    challenge: 'Extensive outer yard perimeters with frequent false alarms from logistics traffic and limited night security personnel.',
-    intendedApplication: 'Automated perimeter tripwire tracking with targeted spotlighting and prompt operator notification.',
+    challenge: 'Expansive factory boundaries and storage yards vulnerable during non-working hours with delayed guard patrols.',
+    intendedApplication: 'Automated 360° vector tracking with continuous camera surveillance alerting central dispatch immediately upon fence-line crossing.',
     deploymentReadiness: 'Target for Initial Field Pilot'
   },
   {
     id: 'critical-infrastructure',
-    name: 'Restricted Utilities & Sub-stations',
-    sector: 'Energy & Water Resources',
-    challenge: 'Unmanned substations and isolated pumping stations exposed to vandalism and copper theft.',
-    intendedApplication: 'Autonomous visual classification alerting central operations dispatch with exact coordinates and telemetry.',
+    name: 'Remote Infrastructure & Power Stations',
+    sector: 'Energy & Telecommunications',
+    challenge: 'Substations, data centers, and communication towers situated far from rapid emergency response units.',
+    intendedApplication: 'Standalone edge vision units providing autonomous intrusion detection and immediate deterrent response in unpopulated zones.',
     deploymentReadiness: 'Target for Pilot Phase II'
   },
   {
-    id: 'corporate-campuses',
-    name: 'R&D Facilities & Secure Campuses',
-    sector: 'Technology & Aerospace',
-    challenge: 'Strict boundary privacy requirements without deploying obtrusive physical barricades.',
-    intendedApplication: 'Integrated camera mesh sharing vector data with existing Security Operations Center (SOC) video management software.',
-    deploymentReadiness: 'Integration Prototype in Planning'
+    id: 'farmhouses-properties',
+    name: 'Farmhouses & Gated Private Estates',
+    sector: 'Private Acreage & Gated Communities',
+    challenge: 'Large acreage where manual guard patrols leave vast blind spots and create severe manpower costs.',
+    intendedApplication: 'Dual-motor platform covering wide approach vectors with CNN filtering to ignore livestock and wildlife.',
+    deploymentReadiness: 'Field Pilot Candidate'
   },
   {
-    id: 'remote-compounds',
-    name: 'Agricultural & Remote Private Sites',
-    sector: 'Commercial Agriculture & Private Acreage',
-    challenge: 'Large boundaries where traditional human patrol intervals leave hours of blind spots.',
-    intendedApplication: 'Solar/battery-backed standalone pods providing intrusion classification and remote app alerts.',
+    id: 'restricted-zones',
+    name: 'Isolated Restricted Zones & Test Labs',
+    sector: 'Research & High-Security Enclosures',
+    challenge: 'Secured scientific enclosures and testing facilities with restricted access requiring 24/7 autonomous surveillance.',
+    intendedApplication: 'Integrated camera mesh and ECPU controlling access corridors and logging vector telemetry for audit compliance.',
     deploymentReadiness: 'Concept Evaluation'
   }
 ];
 
 export const ROADMAP_MILESTONES: MilestoneItem[] = [
   {
-    period: 'Phase 1 (Achieved)',
-    phase: 'Core Prototype Bench Testing',
-    objective: 'Demonstrated camera-assisted CNN person classification, motorized dual-axis tracking mount, and embedded ECU bench integration.',
+    period: '2021 – 2024',
+    phase: 'Patent Filing & Research Inception',
+    objective: 'Filed Indian Patent Application 202141014878 covering automated targeting, machine vision, and dual-axis mechanical drive.',
     verificationStatus: 'Completed'
   },
   {
-    period: 'Phase 2 (Current)',
-    phase: 'Firmware Hardening & Multi-Sensor Sync',
-    objective: 'Refining low-latency optical handoff, environmental ruggedization of enclosure, and operator console verification flow.',
+    period: '2025 – 2026',
+    phase: 'Company Incorporation & DPIIT Recognition',
+    objective: 'Incorporated as HATAK R NON LETHAL SECURITY SOLUTIONS PVT LTD; awarded official DPIIT Startup Recognition (DIPP250915).',
+    verificationStatus: 'Completed'
+  },
+  {
+    period: 'Current (2026)',
+    phase: 'Prototype Bench Verification',
+    objective: 'Demonstrated working prototype with wall bracket mount, optical camera, dual-axis green mount, and yellow ECPU control enclosure.',
+    verificationStatus: 'Completed'
+  },
+  {
+    period: 'Next Phase',
+    phase: 'Industrial Field Pilots & Certification',
+    objective: 'Deploying controlled multi-node test arrays at certified partner facilities under supervision.',
     verificationStatus: 'In Progress'
-  },
-  {
-    period: 'Phase 3 (Upcoming)',
-    phase: 'Controlled Site Pilot Program',
-    objective: 'Deploying bounded multi-node test array at industrial partner test yard under full operator supervision.',
-    verificationStatus: 'Roadmap'
-  },
-  {
-    period: 'Phase 4 (Future)',
-    phase: 'Institutional Compliance & Certification',
-    objective: 'Electromagnetic compatibility (EMC), industrial safety certifications, and standardized VMS software drivers.',
-    verificationStatus: 'Roadmap'
   }
 ];
 
 export const RECOGNITION_ITEMS = [
   {
-    title: 'Startup & Innovation Ecosystem Recognition',
-    category: 'Ecosystem',
-    description: 'Developed under the aegis of deep-tech incubation support. DPIIT startup registration verification pending public clearance.',
-    status: 'Verification Pending Official Publication'
+    title: 'DPIIT Startup Recognition',
+    category: 'Government of India Recognition',
+    description: 'Officially recognized by the Department for Promotion of Industry and Internal Trade (DPIIT), Ministry of Commerce & Industry under Certificate No: DIPP250915.',
+    status: 'Certified Active (Valid thru 2035)'
   },
   {
-    title: 'Intellectual Property Filing',
-    category: 'Patent Application',
-    description: 'Indian Patent Application filed covering multi-camera motorized tracking mechanism and electronic control unit architecture.',
-    status: 'Application Filed / Patent Pending'
+    title: 'Indian Patent Application: 202141014878',
+    category: 'Intellectual Property Filing',
+    description: 'Patent filed covering Applied Mechanics, Machine Vision, and Automated Security Systems with dual-axis motorized targeting.',
+    status: 'Patent Pending / Application Filed'
   },
   {
-    title: 'Engineering Bench Validation',
-    category: 'Technical Proof',
-    description: 'Prototype unit demonstrated tracking agility and classification reliability under controlled testyard conditions.',
-    status: 'Bench Test Verified'
+    title: 'Velammal Institute of Technology Incubation',
+    category: 'Institutional Origin & Research Base',
+    description: "Incubated with support from Velammal Institute of Technology, Chennai (Institution's Innovation Council, NBA & NAAC 'A' Grade accredited).",
+    status: 'Academic & Research Partner'
   }
 ];

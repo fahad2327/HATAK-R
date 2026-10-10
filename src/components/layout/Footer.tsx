@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Shield, Lock, FileText, CheckCircle2 } from 'lucide-react';
+import { Lock, FileText, CheckCircle2 } from 'lucide-react';
 import { Container } from './Container';
 import { COMPANY_METADATA } from '../../data/approvedContent';
 
@@ -62,27 +62,41 @@ export const Footer: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
             {/* Column 1: Brand Info */}
             <div className="md:col-span-2 space-y-4">
-              <div className="flex items-center gap-2">
-                <div className="w-7 h-7 rounded-sm bg-white/10 flex items-center justify-center text-white">
-                  <Shield className="w-4 h-4" />
-                </div>
+              <div className="flex items-center gap-3">
+                <img
+                  src="/images/logo.png"
+                  alt="HATAK R Logo"
+                  className="w-10 h-10 object-contain"
+                />
                 <span className="font-bold text-lg tracking-tight text-white">
                   HATAK <span className="text-brand-red">R™</span>
                 </span>
               </div>
               <p className="text-xs text-slate-300 max-w-sm leading-relaxed">
-                An engineering-led, AI-assisted security technology startup designing intelligent perimeter detection, closed-loop motorized targeting, and multi-sensor tracking architectures.
+                {COMPANY_METADATA.legalEntity}. Incubated in partnership with Velammal Institute of Technology, Chennai. Redefining intelligent perimeter security through edge CNN classification and dual-motor targeting mounts.
               </p>
+              <div className="pt-1 space-y-1 text-[11px] font-mono text-slate-400">
+                <div>DPIIT Startup Certificate: <strong className="text-white">DIPP250915</strong></div>
+                <div>Indian Patent App: <strong className="text-white">202141014878</strong></div>
+              </div>
               <div className="pt-2">
                 <span className="text-[11px] font-mono uppercase tracking-widest text-brand-slate-light block mb-1">
-                  Primary Coordination Desk
+                  Primary Coordination Desks
                 </span>
-                <a
-                  href={`mailto:${COMPANY_METADATA.contactCoordinates.email}`}
-                  className="text-xs font-mono text-white hover:text-brand-red transition-colors underline decoration-white/30"
-                >
-                  {COMPANY_METADATA.contactCoordinates.email}
-                </a>
+                <div className="flex flex-col gap-1 text-xs font-mono">
+                  <a
+                    href={`mailto:${COMPANY_METADATA.contactCoordinates.email}`}
+                    className="text-white hover:text-brand-red transition-colors underline decoration-white/30"
+                  >
+                    {COMPANY_METADATA.contactCoordinates.email}
+                  </a>
+                  <a
+                    href={`mailto:${COMPANY_METADATA.contactCoordinates.teamLeadEmail}`}
+                    className="text-slate-300 hover:text-brand-red transition-colors"
+                  >
+                    Team Lead: {COMPANY_METADATA.contactCoordinates.teamLeadEmail}
+                  </a>
+                </div>
               </div>
             </div>
 

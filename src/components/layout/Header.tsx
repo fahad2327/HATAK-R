@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { NavLink, Link } from 'react-router-dom';
-import { Menu, X, Shield } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { Container } from './Container';
 import { Button } from '../ui/Button';
 
@@ -48,13 +48,14 @@ export const Header: React.FC = () => {
         {/* Brand Logo */}
         <Link
           to="/"
-          className="flex items-center gap-2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-red py-1"
+          className="flex items-center gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-red py-1"
           aria-label="HATAK R Homepage"
         >
-          <div className="w-8 h-8 rounded-sm bg-brand-navy flex items-center justify-center text-white relative shadow-sm">
-            <Shield className="w-4 h-4 text-white" />
-            <span className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-brand-red border-2 border-white" />
-          </div>
+          <img
+            src="/images/logo.png"
+            alt="HATAK R Logo"
+            className="w-10 h-10 object-contain drop-shadow-sm"
+          />
           <div className="flex flex-col">
             <div className="flex items-center gap-1">
               <span className="font-extrabold tracking-tight text-lg leading-none text-brand-navy">
