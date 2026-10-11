@@ -141,7 +141,7 @@ export const Footer: React.FC = () => {
             &copy; {new Date().getFullYear()} {COMPANY_METADATA.legalEntity}. All rights reserved.
           </div>
           <div className="font-mono text-[11px] text-slate-500">
-            Registered: DPIIT Recognized &bull; Patent App. {COMPANY_METADATA.ipStatus.patentNumber} (Pending)
+            Registered: DPIIT Recognized
           </div>
         </div>
       </Container>
