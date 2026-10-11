@@ -10,6 +10,7 @@ import {
   ROADMAP_MILESTONES,
   COMPANY_METADATA,
   LEADERSHIP_TEAM,
+  CORE_ENGINEERING_TEAM,
 } from '../data/approvedContent';
 
 export const AboutPage: React.FC = () => {
@@ -138,6 +139,37 @@ export const AboutPage: React.FC = () => {
                 </div>
               </div>
             ))}
+          </div>
+
+          {/* Core Engineering Members */}
+          <div className="border border-brand-border rounded-sm bg-brand-cool-grey-light/30 p-6 md:p-8">
+            <div className="mb-4">
+              <h3 className="text-base font-bold text-brand-navy">
+                Core Engineering Specialists
+              </h3>
+              <p className="text-xs text-brand-slate">
+                Hardware design, mechatronics drive, and computer vision implementation.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {CORE_ENGINEERING_TEAM.map((eng, idx) => (
+                <div
+                  key={idx}
+                  className="p-4 bg-white border border-brand-border rounded-sm space-y-2"
+                >
+                  <span className="text-[11px] font-mono text-brand-red uppercase font-semibold block">
+                    {eng.role}
+                  </span>
+                  <h4 className="font-bold text-sm text-brand-navy">
+                    {eng.name}
+                  </h4>
+                  <p className="text-xs text-brand-slate leading-normal">
+                    {eng.focus}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
         </Container>
       </section>
