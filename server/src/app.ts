@@ -49,8 +49,17 @@ app.use(
 // Body parser with strict byte limits
 app.use(express.json({ limit: '50kb' }));
 
+// Root API endpoint
+app.get(['/api', '/'], (_req, res) => {
+  res.status(200).json({
+    name: 'Hatak R Enquiry API',
+    status: 'operational',
+    endpoints: ['/api/health', '/api/contact'],
+  });
+});
+
 // Health check endpoint
-app.get('/api/health', (_req, res) => {
+app.get(['/api/health', '/health'], (_req, res) => {
   res.status(200).json({
     status: 'operational',
     service: 'hatak-r-enquiry-api',
@@ -59,14 +68,15 @@ app.get('/api/health', (_req, res) => {
   });
 });
 
-// Mount Routes
+// Mount Routes (supporting both /api/contact and stripped /contact)
 app.use('/api/contact', contactRoutes);
+app.use('/contact', contactRoutes);
 
 // Central error handler
 app.use(errorHandler);
 
-// Server startup (only if run directly)
-if (process.env.NODE_ENV !== 'test') {
+// Server startup (only if run directly, not in test or Vercel serverless)
+if (process.env.NODE_ENV !== 'test' && !process.env.VERCEL) {
   const server = app.listen(config.port, () => {
     console.log(`[HATAK-R-API] Server running securely on http://localhost:${config.port} (${config.nodeEnv})`);
   });

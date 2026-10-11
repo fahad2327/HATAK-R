@@ -5,7 +5,7 @@ interface CardProps {
   className?: string;
   header?: React.ReactNode;
   footer?: React.ReactNode;
-  highlight?: boolean;
+  variant?: 'default' | 'subtle' | 'bordered';
 }
 
 export const Card: React.FC<CardProps> = ({
@@ -13,24 +13,28 @@ export const Card: React.FC<CardProps> = ({
   className = '',
   header,
   footer,
-  highlight = false,
+  variant = 'default',
 }) => {
+  const variantStyles = {
+    default: 'bg-white border border-brand-border shadow-subtle hover:shadow-card',
+    subtle: 'bg-brand-cool-grey-light border border-brand-border/70',
+    bordered: 'bg-white border-2 border-brand-navy shadow-subtle',
+  };
+
   return (
     <div
-      className={`border rounded-sm bg-white transition-all ${
-        highlight
-          ? 'border-brand-navy shadow-sm'
-          : 'border-brand-border hover:border-brand-slate/40'
-      } ${className}`}
+      className={`rounded-lg transition-all duration-200 overflow-hidden ${variantStyles[variant]} ${className}`}
     >
       {header && (
-        <div className="px-6 py-4 border-b border-brand-border bg-brand-cool-grey-light/40">
+        <div className="px-6 py-4 border-b border-brand-border bg-brand-cool-grey-light/50 font-medium text-brand-navy">
           {header}
         </div>
       )}
+
       <div className="p-6">{children}</div>
+
       {footer && (
-        <div className="px-6 py-3.5 border-t border-brand-border bg-brand-cool-grey-light/20 text-xs text-brand-slate">
+        <div className="px-6 py-3.5 border-t border-brand-border bg-brand-cool-grey-light/30 text-xs font-mono text-brand-slate">
           {footer}
         </div>
       )}

@@ -81,8 +81,10 @@ Patent Application: 202141014878
             <table style="width: 100%; font-size: 14px; line-height: 1.6;">
               <tr><td style="width: 35%; font-weight: bold; color: #536174;">Full Name:</td><td>${payload.fullName}</td></tr>
               <tr><td style="font-weight: bold; color: #536174;">Work Email:</td><td><a href="mailto:${payload.workEmail}">${payload.workEmail}</a></td></tr>
+              ${payload.phoneNumber ? `<tr><td style="font-weight: bold; color: #536174;">Phone Number:</td><td>${payload.phoneNumber}</td></tr>` : ''}
               <tr><td style="font-weight: bold; color: #536174;">Organization:</td><td>${payload.organization}</td></tr>
               <tr><td style="font-weight: bold; color: #536174;">Inquiry Type:</td><td><strong>${payload.inquiryType}</strong></td></tr>
+              ${payload.areaOfInterest ? `<tr><td style="font-weight: bold; color: #536174;">Area of Interest:</td><td>${payload.areaOfInterest}</td></tr>` : ''}
               ${payload.siteCharacteristics ? `<tr><td style="font-weight: bold; color: #536174;">Site Profile:</td><td>${payload.siteCharacteristics}</td></tr>` : ''}
             </table>
 

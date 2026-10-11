@@ -12,6 +12,9 @@ export default defineConfig({
   },
   server: {
     port: 5173,
+    watch: {
+      ignored: ['**/public/videos/**', '**/*.mp4'],
+    },
     proxy: {
       '/api': {
         target: 'http://localhost:3001',

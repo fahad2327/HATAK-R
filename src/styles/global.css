@@ -6,24 +6,26 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    background-color: #FFFFFF;
+    color: #101827;
   }
 
   body {
-    background-color: var(--color-brand-white);
-    color: var(--color-brand-navy);
+    background-color: #FFFFFF;
+    color: #101827;
     font-family: var(--font-sans);
-    line-height: 1.5;
+    line-height: 1.6;
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
-  /* Accessible focus indicators */
+  /* Accessible Focus Rings */
   :focus-visible {
-    outline: 2px solid var(--color-brand-red);
+    outline: 2px solid #D92E42;
     outline-offset: 2px;
   }
 
-  /* Reduced motion support */
+  /* Reduced motion */
   @media (prefers-reduced-motion: reduce) {
     *, ::before, ::after {
       animation-duration: 0.01ms !important;
@@ -35,15 +37,16 @@
 }
 
 @layer components {
-  /* Subtle technical grid line */
-  .grid-pattern {
-    background-size: 24px 24px;
+  /* Subtle industrial grid pattern */
+  .pattern-grid-subtle {
+    background-size: 32px 32px;
     background-image: 
-      linear-gradient(to right, rgba(16, 24, 39, 0.04) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(16, 24, 39, 0.04) 1px, transparent 1px);
+      linear-gradient(to right, rgba(16, 24, 39, 0.03) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(16, 24, 39, 0.03) 1px, transparent 1px);
   }
 
-  .border-technical {
-    border-color: var(--color-brand-border);
+  .pattern-dots-subtle {
+    background-size: 24px 24px;
+    background-image: radial-gradient(rgba(16, 24, 39, 0.06) 1px, transparent 1px);
   }
 }

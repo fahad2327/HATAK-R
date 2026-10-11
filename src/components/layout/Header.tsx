@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { NavLink, Link } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ArrowRight } from 'lucide-react';
 import { Container } from './Container';
 import { Button } from '../ui/Button';
 
@@ -10,78 +10,63 @@ interface NavItem {
 }
 
 const NAV_ITEMS: NavItem[] = [
+  { name: 'Home', href: '/' },
   { name: 'Solutions', href: '/solutions' },
   { name: 'Technology', href: '/technology' },
   { name: 'Industries', href: '/industries' },
-  { name: 'R&D', href: '/rnd' },
+  { name: 'R&D', href: '/rd' },
   { name: 'About', href: '/about' },
   { name: 'Partners', href: '/partners' },
+  { name: 'Contact', href: '/contact' },
 ];
 
 export const Header: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-brand-border">
-      {/* Top Engineering Advisory Banner */}
-      <div className="bg-brand-navy text-white text-[11px] py-1.5 px-4 font-mono tracking-wide border-b border-brand-navy">
-        <Container className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-brand-red animate-pulse" />
-            <span className="text-brand-cool-grey font-medium">
-              HATAK R™ SYSTEM STATUS:
-            </span>
-            <span className="text-slate-300">
-              Bench Testing Verified • Field Pilots in Scheduling
-            </span>
-          </div>
-          <div className="hidden md:flex items-center gap-4 text-slate-300">
-            <span>PATENT PENDING</span>
-            <span>•</span>
-            <span>HUMAN-IN-THE-LOOP ARCHITECTURE</span>
-          </div>
-        </Container>
-      </div>
-
-      {/* Main Navigation Bar */}
-      <Container className="h-16 flex items-center justify-between">
-        {/* Brand Logo */}
+    <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-brand-border">
+      <Container className="h-20 flex items-center justify-between">
+        {/* Brand Official Logo & Title */}
         <Link
           to="/"
-          className="flex items-center gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-red py-1"
-          aria-label="HATAK R Homepage"
+          className="flex items-center gap-3.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-red rounded-lg py-1 group"
+          aria-label="Hatak R Home"
         >
-          <img
-            src="/images/logo.png"
-            alt="HATAK R Logo"
-            className="w-10 h-10 object-contain drop-shadow-sm"
-          />
+          <div className="w-11 h-11 bg-white border border-brand-border rounded-lg p-1.5 flex items-center justify-center shrink-0 shadow-subtle group-hover:border-brand-slate-light transition-colors">
+            <img
+              src="/images/logo.png"
+              alt="Hatak R Official Logo"
+              className="w-full h-full object-contain"
+            />
+          </div>
+
           <div className="flex flex-col">
-            <div className="flex items-center gap-1">
-              <span className="font-extrabold tracking-tight text-lg leading-none text-brand-navy">
-                HATAK
+            <div className="flex items-center gap-1.5">
+              <span className="font-bold text-xl tracking-tight text-brand-navy">
+                HATAK R
               </span>
-              <span className="text-xs font-mono font-bold text-brand-red bg-brand-red-light px-1 py-0.5 rounded-sm">
-                R™
+              <span className="text-[10px] font-mono font-bold text-brand-red bg-brand-red-light px-1 py-0.5 rounded">
+                TM
               </span>
             </div>
-            <span className="text-[10px] uppercase font-mono tracking-wider text-brand-slate leading-tight mt-0.5">
-              Intelligent Security
+            <span className="text-xs text-brand-slate tracking-normal font-normal">
+              Intelligent Security Systems
             </span>
           </div>
         </Link>
 
-        {/* Desktop Nav Links */}
-        <nav className="hidden lg:flex items-center gap-1" aria-label="Main navigation">
+        {/* Desktop Navigation Links */}
+        <nav className="hidden lg:flex items-center gap-1 xl:gap-2" aria-label="Primary navigation">
           {NAV_ITEMS.map((item) => (
             <NavLink
               key={item.href}
               to={item.href}
+              end={item.href === '/'}
               className={({ isActive }) =>
-                `px-3 py-1.5 text-xs font-medium uppercase tracking-wider transition-colors rounded-sm ${
+                `px-3 py-2 text-sm font-medium transition-colors rounded-md ${
                   isActive
-                    ? 'text-brand-red bg-brand-red-light/60 font-semibold'
-                    : 'text-brand-navy hover:text-brand-red hover:bg-brand-cool-grey-light'
+                    ? 'text-brand-navy bg-brand-cool-grey font-semibold'
+                    : 'text-brand-slate hover:text-brand-navy hover:bg-brand-cool-grey-light'
                 }`
               }
             >
@@ -90,77 +75,54 @@ export const Header: React.FC = () => {
           ))}
         </nav>
 
-        {/* Desktop CTA & Contact */}
+        {/* Primary Action Button */}
         <div className="hidden lg:flex items-center gap-3">
-          <Link to="/contact">
-            <Button variant="outline" size="sm">
-              Contact
-            </Button>
-          </Link>
-          <Link to="/contact?type=pilot">
-            <Button variant="primary" size="sm">
-              Request a Demo
+          <Link to="/contact?type=demo">
+            <Button variant="primary" size="sm" className="gap-1.5 shadow-sm">
+              <span>REQUEST A DEMO</span>
+              <ArrowRight className="w-3.5 h-3.5" />
             </Button>
           </Link>
         </div>
 
-        {/* Mobile Hamburger Toggle */}
-        <div className="lg:hidden flex items-center gap-2">
-          <Link to="/contact?type=pilot">
-            <Button variant="primary" size="sm" className="text-xs px-2.5 h-8">
-              Demo
-            </Button>
-          </Link>
+        {/* Mobile Menu Toggle Button */}
+        <div className="flex lg:hidden">
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2 text-brand-navy hover:bg-brand-cool-grey rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-red"
+            className="p-2 rounded-md text-brand-navy hover:bg-brand-cool-grey-light focus:outline-none focus:ring-2 focus:ring-brand-red"
             aria-expanded={mobileMenuOpen}
-            aria-label="Toggle navigation menu"
+            aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
           >
-            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
       </Container>
 
-      {/* Mobile Nav Drawer */}
+      {/* Mobile Menu Dropdown */}
       {mobileMenuOpen && (
-        <div className="lg:hidden border-t border-brand-border bg-white px-4 py-4 space-y-1 shadow-lg">
-          <div className="space-y-1 pb-3 border-b border-brand-border">
-            {NAV_ITEMS.map((item) => (
-              <NavLink
-                key={item.href}
-                to={item.href}
-                onClick={() => setMobileMenuOpen(false)}
-                className={({ isActive }) =>
-                  `block px-3 py-2 text-sm font-medium rounded-sm ${
-                    isActive
-                      ? 'text-brand-red bg-brand-red-light font-semibold'
-                      : 'text-brand-navy hover:bg-brand-cool-grey-light'
-                  }`
-                }
-              >
-                {item.name}
-              </NavLink>
-            ))}
-          </div>
-          <div className="pt-3 space-y-2">
-            <Link
-              to="/contact"
+        <div className="lg:hidden border-t border-brand-border bg-white px-4 pt-3 pb-6 space-y-2 shadow-lg animate-fadeIn">
+          {NAV_ITEMS.map((item) => (
+            <NavLink
+              key={item.href}
+              to={item.href}
+              end={item.href === '/'}
               onClick={() => setMobileMenuOpen(false)}
-              className="block"
+              className={({ isActive }) =>
+                `block px-3 py-2.5 rounded-md text-sm font-medium ${
+                  isActive
+                    ? 'bg-brand-cool-grey text-brand-navy font-semibold'
+                    : 'text-brand-slate hover:bg-brand-cool-grey-light hover:text-brand-navy'
+                }`
+              }
             >
-              <Button variant="outline" size="md" className="w-full">
-                Business & Technical Inquiries
-              </Button>
-            </Link>
-            <Link
-              to="/contact?type=pilot"
-              onClick={() => setMobileMenuOpen(false)}
-              className="block"
-            >
-              <Button variant="primary" size="md" className="w-full">
-                Request a Perimeter Demo
+              {item.name}
+            </NavLink>
+          ))}
+          <div className="pt-4 border-t border-brand-border mt-3">
+            <Link to="/contact?type=demo" onClick={() => setMobileMenuOpen(false)}>
+              <Button variant="primary" size="md" className="w-full justify-center">
+                REQUEST A DEMO
               </Button>
             </Link>
           </div>

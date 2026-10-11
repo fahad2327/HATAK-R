@@ -7,15 +7,24 @@ import { Button } from '../ui/Button';
 
 export const ContactForm: React.FC = () => {
   const [searchParams] = useSearchParams();
-  const defaultType = searchParams.get('type') === 'pilot' 
-    ? 'Industrial Perimeter Pilot' 
-    : 'General Technical Inquiry';
+  const paramType = searchParams.get('type');
+  const paramArea = searchParams.get('area');
+
+  const getInitialInquiryType = () => {
+    if (paramType === 'demo') return 'Demo request';
+    if (paramType === 'pilot') return 'Demo request';
+    if (paramType === 'technical') return 'Technical integration';
+    if (paramType === 'research') return 'Research collaboration';
+    return 'Demo request';
+  };
 
   const [formData, setFormData] = useState<Partial<ContactFormData>>({
     fullName: '',
     workEmail: '',
+    phoneNumber: '',
     organization: '',
-    inquiryType: defaultType as ContactFormData['inquiryType'],
+    areaOfInterest: paramArea || 'Machine Vision & Tracking',
+    inquiryType: getInitialInquiryType() as ContactFormData['inquiryType'],
     siteCharacteristics: '',
     message: '',
     websiteUrl: '', // Honeypot trap
@@ -56,7 +65,7 @@ export const ContactForm: React.FC = () => {
     e.preventDefault();
     setServerError(null);
 
-    // Client-side schema validation (for user experience guidance)
+    // Client-side schema validation
     const result = contactFormSchema.safeParse(formData);
     if (!result.success) {
       const fieldErrors: Record<string, string> = {};
@@ -98,7 +107,7 @@ export const ContactForm: React.FC = () => {
         setServerError(response.message);
       }
     } catch {
-      setServerError('An unexpected network interruption occurred. Please verify your internet connection or email our engineering desk directly.');
+      setServerError('An unexpected network interruption occurred. Please verify your connection or email our engineering desk directly at engineering@hatak-r.com.');
     } finally {
       setIsSubmitting(false);
     }
@@ -109,8 +118,10 @@ export const ContactForm: React.FC = () => {
     setFormData({
       fullName: '',
       workEmail: '',
+      phoneNumber: '',
       organization: '',
-      inquiryType: 'General Technical Inquiry',
+      areaOfInterest: 'Machine Vision & Tracking',
+      inquiryType: 'Demo request',
       siteCharacteristics: '',
       message: '',
       websiteUrl: '',
@@ -123,28 +134,30 @@ export const ContactForm: React.FC = () => {
   if (submissionSuccess) {
     return (
       <div
-        className="p-8 border border-emerald-300 bg-emerald-50/50 rounded-sm"
+        className="p-8 rounded-xl border border-emerald-300 bg-emerald-50/70"
         role="alert"
         aria-live="polite"
       >
-        <div className="flex items-center gap-3 text-emerald-800 mb-4">
-          <CheckCircle2 className="w-6 h-6 shrink-0 text-emerald-600" />
-          <h3 className="text-lg font-bold">Inquiry Successfully Transmitted</h3>
+        <div className="flex items-center gap-3 text-emerald-900 mb-4">
+          <div className="w-8 h-8 rounded-full bg-emerald-600 text-white flex items-center justify-center shrink-0">
+            <CheckCircle2 className="w-5 h-5" />
+          </div>
+          <h3 className="text-xl font-bold">Inquiry Successfully Transmitted</h3>
         </div>
-        <p className="text-sm text-emerald-950 mb-4 leading-relaxed">
+        <p className="text-sm text-emerald-800 mb-4 leading-relaxed">
           {submissionSuccess.message}
         </p>
-        <div className="p-3.5 bg-white border border-emerald-200 rounded-sm mb-6 text-xs font-mono text-emerald-900">
-          <span className="text-slate-700 block mb-0.5">Dispatched Reference ID:</span>
-          <span className="font-bold text-sm tracking-wide text-brand-navy">
+        <div className="p-4 bg-white rounded-lg border border-emerald-200 mb-6 text-xs font-mono text-brand-navy">
+          <span className="text-slate-500 font-semibold block mb-1 uppercase tracking-wider">Dispatched Reference ID:</span>
+          <span className="font-bold text-lg tracking-wider text-brand-red">
             {submissionSuccess.referenceId}
           </span>
         </div>
         <p className="text-xs text-emerald-800 mb-6 leading-relaxed">
-          Our engineering team reviews all technical parameters under non-disclosure governance. A confirmation email has been dispatched to your provided work email address.
+          Our systems engineering team reviews all technical parameters under non-disclosure governance. A confirmation alert has been queued for our team.
         </p>
-        <Button variant="outline" size="sm" onClick={handleReset} className="gap-2">
-          <RefreshCw className="w-3.5 h-3.5" />
+        <Button variant="primary" size="sm" onClick={handleReset} className="gap-2">
+          <RefreshCw className="w-4 h-4" />
           Submit Another Inquiry
         </Button>
       </div>
@@ -155,19 +168,19 @@ export const ContactForm: React.FC = () => {
     <form onSubmit={handleSubmit} noValidate className="space-y-6">
       {serverError && (
         <div
-          className="p-4 bg-brand-red-light border border-brand-red/30 rounded-sm text-brand-navy flex items-start gap-3"
+          className="p-4 bg-red-50 text-brand-red rounded-lg border border-red-200 flex items-start gap-3"
           role="alert"
           aria-live="assertive"
         >
           <AlertCircle className="w-5 h-5 text-brand-red shrink-0 mt-0.5" />
           <div className="text-xs">
-            <span className="font-semibold block mb-0.5">Transmission Error</span>
+            <span className="font-bold block mb-0.5">Transmission Error</span>
             <span>{serverError}</span>
           </div>
         </div>
       )}
 
-      {/* Honeypot field (hidden from assistive technologies and sighted users) */}
+      {/* Honeypot field (anti-automation bot trap) */}
       <div className="hidden" aria-hidden="true">
         <label htmlFor="field-websiteUrl">Leave this field blank</label>
         <input
@@ -181,12 +194,12 @@ export const ContactForm: React.FC = () => {
         />
       </div>
 
-      {/* Grid: Name & Email */}
+      {/* Grid: Full Name & Business Email */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
           <label
             htmlFor="field-fullName"
-            className="block text-xs font-mono uppercase tracking-wider text-brand-navy font-semibold mb-2"
+            className="block text-xs font-semibold text-brand-navy mb-1.5"
           >
             Full Name <span className="text-brand-red">*</span>
           </label>
@@ -200,8 +213,8 @@ export const ContactForm: React.FC = () => {
             onChange={handleChange}
             aria-invalid={!!errors.fullName}
             aria-describedby={errors.fullName ? 'error-fullName' : undefined}
-            className={`w-full px-3.5 py-2.5 text-sm rounded-sm border bg-white text-brand-navy placeholder-brand-slate/50 transition-colors focus:border-brand-navy focus:outline-none focus:ring-1 focus:ring-brand-navy ${
-              errors.fullName ? 'border-brand-red bg-brand-red-light/20' : 'border-brand-border'
+            className={`w-full px-3.5 py-2.5 text-sm rounded-md border bg-white text-brand-navy placeholder-slate-400 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-red focus:border-transparent ${
+              errors.fullName ? 'border-red-400 bg-red-50/40' : 'border-brand-border'
             }`}
             placeholder="e.g. Dr. Rajesh Sharma"
           />
@@ -215,9 +228,9 @@ export const ContactForm: React.FC = () => {
         <div>
           <label
             htmlFor="field-workEmail"
-            className="block text-xs font-mono uppercase tracking-wider text-brand-navy font-semibold mb-2"
+            className="block text-xs font-semibold text-brand-navy mb-1.5"
           >
-            Work Email <span className="text-brand-red">*</span>
+            Business Email <span className="text-brand-red">*</span>
           </label>
           <input
             id="field-workEmail"
@@ -229,8 +242,8 @@ export const ContactForm: React.FC = () => {
             onChange={handleChange}
             aria-invalid={!!errors.workEmail}
             aria-describedby={errors.workEmail ? 'error-workEmail' : undefined}
-            className={`w-full px-3.5 py-2.5 text-sm rounded-sm border bg-white text-brand-navy placeholder-brand-slate/50 transition-colors focus:border-brand-navy focus:outline-none focus:ring-1 focus:ring-brand-navy ${
-              errors.workEmail ? 'border-brand-red bg-brand-red-light/20' : 'border-brand-border'
+            className={`w-full px-3.5 py-2.5 text-sm rounded-md border bg-white text-brand-navy placeholder-slate-400 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-red focus:border-transparent ${
+              errors.workEmail ? 'border-red-400 bg-red-50/40' : 'border-brand-border'
             }`}
             placeholder="name@organization.com"
           />
@@ -242,14 +255,14 @@ export const ContactForm: React.FC = () => {
         </div>
       </div>
 
-      {/* Grid: Organization & Inquiry Type */}
+      {/* Grid: Organization & Phone Number (Optional) */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
           <label
             htmlFor="field-organization"
-            className="block text-xs font-mono uppercase tracking-wider text-brand-navy font-semibold mb-2"
+            className="block text-xs font-semibold text-brand-navy mb-1.5"
           >
-            Organization / Institution <span className="text-brand-red">*</span>
+            Organization / Facility <span className="text-brand-red">*</span>
           </label>
           <input
             id="field-organization"
@@ -261,8 +274,8 @@ export const ContactForm: React.FC = () => {
             onChange={handleChange}
             aria-invalid={!!errors.organization}
             aria-describedby={errors.organization ? 'error-organization' : undefined}
-            className={`w-full px-3.5 py-2.5 text-sm rounded-sm border bg-white text-brand-navy placeholder-brand-slate/50 transition-colors focus:border-brand-navy focus:outline-none focus:ring-1 focus:ring-brand-navy ${
-              errors.organization ? 'border-brand-red bg-brand-red-light/20' : 'border-brand-border'
+            className={`w-full px-3.5 py-2.5 text-sm rounded-md border bg-white text-brand-navy placeholder-slate-400 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-red focus:border-transparent ${
+              errors.organization ? 'border-red-400 bg-red-50/40' : 'border-brand-border'
             }`}
             placeholder="Company or facility name"
           />
@@ -275,10 +288,59 @@ export const ContactForm: React.FC = () => {
 
         <div>
           <label
-            htmlFor="field-inquiryType"
-            className="block text-xs font-mono uppercase tracking-wider text-brand-navy font-semibold mb-2"
+            htmlFor="field-phoneNumber"
+            className="block text-xs font-semibold text-brand-navy mb-1.5"
           >
-            Inquiry Objective <span className="text-brand-red">*</span>
+            Phone Number <span className="text-slate-400 font-normal">(Optional)</span>
+          </label>
+          <input
+            id="field-phoneNumber"
+            name="phoneNumber"
+            type="tel"
+            autoComplete="tel"
+            value={formData.phoneNumber || ''}
+            onChange={handleChange}
+            aria-invalid={!!errors.phoneNumber}
+            aria-describedby={errors.phoneNumber ? 'error-phoneNumber' : undefined}
+            className={`w-full px-3.5 py-2.5 text-sm rounded-md border bg-white text-brand-navy placeholder-slate-400 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-red focus:border-transparent ${
+              errors.phoneNumber ? 'border-red-400 bg-red-50/40' : 'border-brand-border'
+            }`}
+            placeholder="+91 98765 43210"
+          />
+          {errors.phoneNumber && (
+            <p id="error-phoneNumber" className="mt-1 text-xs text-brand-red font-medium">
+              {errors.phoneNumber}
+            </p>
+          )}
+        </div>
+      </div>
+
+      {/* Grid: Area of Interest & Enquiry Type */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <label
+            htmlFor="field-areaOfInterest"
+            className="block text-xs font-semibold text-brand-navy mb-1.5"
+          >
+            Area of Interest <span className="text-slate-400 font-normal">(Optional)</span>
+          </label>
+          <input
+            id="field-areaOfInterest"
+            name="areaOfInterest"
+            type="text"
+            value={formData.areaOfInterest || ''}
+            onChange={handleChange}
+            className="w-full px-3.5 py-2.5 text-sm rounded-md border border-brand-border bg-white text-brand-navy placeholder-slate-400 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-red focus:border-transparent"
+            placeholder="e.g. Machine Vision, Motorized Mount, VMS"
+          />
+        </div>
+
+        <div>
+          <label
+            htmlFor="field-inquiryType"
+            className="block text-xs font-semibold text-brand-navy mb-1.5"
+          >
+            Enquiry Type <span className="text-brand-red">*</span>
           </label>
           <select
             id="field-inquiryType"
@@ -288,8 +350,8 @@ export const ContactForm: React.FC = () => {
             onChange={handleChange}
             aria-invalid={!!errors.inquiryType}
             aria-describedby={errors.inquiryType ? 'error-inquiryType' : undefined}
-            className={`w-full px-3.5 py-2.5 text-sm rounded-sm border bg-white text-brand-navy transition-colors focus:border-brand-navy focus:outline-none focus:ring-1 focus:ring-brand-navy ${
-              errors.inquiryType ? 'border-brand-red bg-brand-red-light/20' : 'border-brand-border'
+            className={`w-full px-3.5 py-2.5 text-sm rounded-md border bg-white text-brand-navy transition-colors focus:outline-none focus:ring-2 focus:ring-brand-red focus:border-transparent ${
+              errors.inquiryType ? 'border-red-400 bg-red-50/40' : 'border-brand-border'
             }`}
           >
             {inquiryTypes.map((type) => (
@@ -306,13 +368,13 @@ export const ContactForm: React.FC = () => {
         </div>
       </div>
 
-      {/* Site Characteristics */}
+      {/* Site Characteristics / Profile */}
       <div>
         <label
           htmlFor="field-siteCharacteristics"
-          className="block text-xs font-mono uppercase tracking-wider text-brand-navy font-semibold mb-2"
+          className="block text-xs font-semibold text-brand-navy mb-1.5"
         >
-          Site Perimeter Profile (Optional)
+          Site Perimeter Characteristics <span className="text-slate-400 font-normal">(Optional)</span>
         </label>
         <input
           id="field-siteCharacteristics"
@@ -321,11 +383,11 @@ export const ContactForm: React.FC = () => {
           value={formData.siteCharacteristics || ''}
           onChange={handleChange}
           maxLength={200}
-          className="w-full px-3.5 py-2.5 text-sm rounded-sm border border-brand-border bg-white text-brand-navy placeholder-brand-slate/50 transition-colors focus:border-brand-navy focus:outline-none focus:ring-1 focus:ring-brand-navy"
-          placeholder="e.g. 5-acre logistics yard, fenced perimeter, existing IP cameras"
+          className="w-full px-3.5 py-2.5 text-sm rounded-md border border-brand-border bg-white text-brand-navy placeholder-slate-400 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-red focus:border-transparent"
+          placeholder="e.g. 10-acre industrial boundary, chain-link fence, existing lighting"
         />
-        <span className="text-[11px] text-brand-slate mt-1 block">
-          Briefly note perimeter distance or lighting constraints if inquiring about pilot deployments.
+        <span className="text-xs text-slate-500 mt-1 block">
+          Briefly note perimeter length or sightline obstacles if inquiring about pilot deployment.
         </span>
       </div>
 
@@ -333,23 +395,23 @@ export const ContactForm: React.FC = () => {
       <div>
         <label
           htmlFor="field-message"
-          className="block text-xs font-mono uppercase tracking-wider text-brand-navy font-semibold mb-2"
+          className="block text-xs font-semibold text-brand-navy mb-1.5"
         >
-          Technical Details & Requirements <span className="text-brand-red">*</span>
+          Message & Requirements <span className="text-brand-red">*</span>
         </label>
         <textarea
           id="field-message"
           name="message"
-          rows={5}
+          rows={4}
           required
           value={formData.message || ''}
           onChange={handleChange}
           aria-invalid={!!errors.message}
           aria-describedby={errors.message ? 'error-message' : undefined}
-          className={`w-full px-3.5 py-2.5 text-sm rounded-sm border bg-white text-brand-navy placeholder-brand-slate/50 transition-colors focus:border-brand-navy focus:outline-none focus:ring-1 focus:ring-brand-navy ${
-            errors.message ? 'border-brand-red bg-brand-red-light/20' : 'border-brand-border'
+          className={`w-full px-3.5 py-2.5 text-sm rounded-md border bg-white text-brand-navy placeholder-slate-400 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-red focus:border-transparent ${
+            errors.message ? 'border-red-400 bg-red-50/40' : 'border-brand-border'
           }`}
-          placeholder="Please describe your specific requirements, timeline, and current perimeter monitoring arrangement..."
+          placeholder="Please describe your technical requirement, environment characteristics, and timeline..."
         />
         {errors.message && (
           <p id="error-message" className="mt-1 text-xs text-brand-red font-medium">
@@ -358,7 +420,7 @@ export const ContactForm: React.FC = () => {
         )}
       </div>
 
-      {/* Consent Checkbox */}
+      {/* Privacy Consent Checkbox */}
       <div className="pt-2">
         <div className="flex items-start gap-3">
           <input
@@ -369,28 +431,28 @@ export const ContactForm: React.FC = () => {
             onChange={handleChange}
             aria-invalid={!!errors.dataConsent}
             aria-describedby={errors.dataConsent ? 'error-dataConsent' : undefined}
-            className="mt-1 h-4 w-4 rounded-sm border-brand-border text-brand-red focus:ring-brand-red"
+            className="mt-0.5 h-4 w-4 rounded border-brand-border text-brand-red focus:ring-brand-red"
           />
           <label htmlFor="field-dataConsent" className="text-xs text-brand-slate leading-relaxed">
-            I confirm that I am authorized to make this technical inquiry on behalf of my organization and acknowledge that HATAK R™ processes provided contact details strictly to respond to this inquiry under our{' '}
-            <a href="/privacy" target="_blank" className="text-brand-navy underline hover:text-brand-red">
+            I confirm that I am authorized to submit this enquiry on behalf of my organization and consent to Hatak R™ processing this information under our{' '}
+            <a href="/privacy" target="_blank" className="font-semibold text-brand-navy underline hover:text-brand-red">
               Privacy Policy
             </a>
             . <span className="text-brand-red">*</span>
           </label>
         </div>
         {errors.dataConsent && (
-          <p id="error-dataConsent" className="mt-1.5 text-xs text-brand-red font-medium ml-7">
+          <p id="error-dataConsent" className="mt-1 text-xs text-brand-red font-medium ml-7">
             {errors.dataConsent}
           </p>
         )}
       </div>
 
-      {/* Submit Button & Security Note */}
+      {/* Submit Button & Security Protocol */}
       <div className="pt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-t border-brand-border">
         <div className="flex items-center gap-2 text-xs text-brand-slate">
           <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
-          <span>Server-side rate limited • Data encrypted in transit</span>
+          <span>Strict server validation &bull; Zero public exposure &bull; SSL encrypted</span>
         </div>
 
         <Button
@@ -398,10 +460,10 @@ export const ContactForm: React.FC = () => {
           variant="primary"
           size="md"
           isLoading={isSubmitting}
-          className="gap-2 shrink-0"
+          className="gap-2 shrink-0 shadow-sm"
         >
           <Send className="w-4 h-4" />
-          Submit Official Inquiry
+          Submit Enquiry
         </Button>
       </div>
     </form>

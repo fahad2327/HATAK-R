@@ -1,7 +1,7 @@
 import React from 'react';
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
+  variant?: 'primary' | 'secondary' | 'red' | 'outline' | 'ghost';
   size?: 'sm' | 'md' | 'lg';
   isLoading?: boolean;
 }
@@ -21,19 +21,25 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     ref
   ) => {
     const baseStyles =
-      'inline-flex items-center justify-center font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-red focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed select-none text-sm tracking-wide';
+      'inline-flex items-center justify-center font-medium transition-colors select-none rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-red focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed';
 
     const sizeStyles = {
-      sm: 'h-8 px-3 text-xs rounded-sm',
-      md: 'h-10 px-5 text-sm rounded-sm',
-      lg: 'h-12 px-6 text-base rounded-sm',
+      sm: 'h-9 px-3.5 text-xs font-semibold',
+      md: 'h-10 px-5 text-sm font-semibold',
+      lg: 'h-12 px-6 text-base font-semibold',
     };
 
     const variantStyles = {
-      primary: 'bg-brand-red text-white hover:bg-brand-red-hover active:bg-brand-red-hover shadow-sm',
-      secondary: 'bg-brand-navy text-white hover:bg-black active:bg-black shadow-sm',
-      outline: 'border border-brand-border bg-white text-brand-navy hover:bg-brand-cool-grey-light hover:border-brand-slate',
-      ghost: 'bg-transparent text-brand-navy hover:bg-brand-cool-grey hover:text-black',
+      primary:
+        'bg-brand-navy text-white hover:bg-brand-navy-dark shadow-subtle active:bg-black',
+      red:
+        'bg-brand-red text-white hover:bg-brand-red-hover shadow-subtle active:bg-brand-red-hover',
+      secondary:
+        'bg-brand-cool-grey text-brand-navy hover:bg-slate-200 active:bg-slate-300',
+      outline:
+        'bg-white text-brand-navy border border-brand-border hover:bg-brand-cool-grey-light hover:border-brand-slate-light active:bg-brand-cool-grey',
+      ghost:
+        'bg-transparent text-brand-navy hover:bg-brand-cool-grey-light active:bg-brand-cool-grey',
     };
 
     return (

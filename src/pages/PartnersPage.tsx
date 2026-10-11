@@ -1,20 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Building, FileText } from 'lucide-react';
 import { Container } from '../components/layout/Container';
 import { PageHeader } from '../components/layout/PageHeader';
 import { Button } from '../components/ui/Button';
 import { Badge } from '../components/ui/Badge';
 import { Card } from '../components/ui/Card';
-import { RECOGNITION_ITEMS } from '../data/approvedContent';
 
 export const PartnersPage: React.FC = () => {
   return (
-    <div className="space-y-16 pb-20">
+    <div className="space-y-16 pb-24 bg-white">
       <PageHeader
         category="Ecosystem & Verification"
-        title="Institutional Recognition & Strategic Partnerships"
-        description="Factual overview of incubation affiliations, deep-tech ecosystem participation, and verified intellectual property filings."
+        title="Official Recognition & Strategic Collaborations"
+        description="Factual overview of government startup certifications, academic research incubation, and structured industrial pilot channels."
         statusBadge="Default"
         statusLabel="Official Disclosures"
         actions={
@@ -26,174 +25,224 @@ export const PartnersPage: React.FC = () => {
         }
       />
 
-      {/* Governance Standards Advisory */}
+      {/* Governance & Integrity Advisory */}
       <section>
         <Container>
-          <div className="p-4 bg-brand-cool-grey-light border border-brand-border rounded-sm text-xs text-brand-slate leading-relaxed">
-            <span className="font-bold text-brand-navy block mb-0.5">Content Integrity Standards:</span>
-            In strict compliance with startup ethics, HATAK R™ publishes only verified institutional relationships and certified IP filings. We do not display synthetic client logos, paid awards, or unauthorized university seals.
+          <div className="p-4 bg-brand-cool-grey-light rounded-md border border-brand-border text-xs text-brand-slate leading-relaxed">
+            <span className="font-semibold text-brand-navy block mb-0.5">Content Integrity Standards:</span>
+            In strict adherence to corporate and startup ethics, HATAK R™ publishes only verified government certificates and institutional relationships. We do not display synthetic client logos, unverified awards, or unconfirmed corporate endorsements.
           </div>
         </Container>
       </section>
 
-      {/* Verified Recognition Statements */}
+      {/* 1. Government Recognition */}
       <section>
         <Container>
-          <div className="max-w-2xl mb-8">
+          <div className="max-w-3xl space-y-2 mb-8">
             <span className="text-xs font-mono font-bold uppercase tracking-wider text-brand-red">
-              Verified Facts
+              Section 01 • Statutory Accreditation
             </span>
-            <h2 className="text-2xl font-extrabold text-brand-navy mt-1">
-              Ecosystem & Intellectual Property Record
+            <h2 className="text-2xl sm:text-3xl font-bold text-brand-navy">
+              Government Recognition
             </h2>
+            <p className="text-sm text-brand-slate leading-relaxed">
+              Official startup recognition granted under the Startup India initiative by the Ministry of Commerce & Industry.
+            </p>
           </div>
 
-          <div className="space-y-6">
-            {RECOGNITION_ITEMS.map((item, idx) => (
-              <div
-                key={idx}
-                className="p-6 md:p-8 bg-white border border-brand-border rounded-sm flex flex-col md:flex-row md:items-center justify-between gap-6"
-              >
-                <div className="space-y-2 max-w-2xl">
-                  <div className="flex items-center gap-2">
-                    <span className="text-xs font-mono font-semibold text-brand-red uppercase">
-                      {item.category}
-                    </span>
-                    <span className="text-brand-slate">•</span>
-                    <span className="text-xs font-mono text-brand-slate">Record 0{idx + 1}</span>
-                  </div>
-                  <h3 className="text-lg font-bold text-brand-navy">
-                    {item.title}
+          <div className="bg-white p-6 sm:p-8 rounded-lg border border-brand-border shadow-subtle">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+              {/* Certificate Image: Clean, framed, balanced without dominating */}
+              <div className="lg:col-span-5 bg-brand-cool-grey-light p-2 rounded-lg border border-brand-border">
+                <div className="aspect-[3/4] max-h-[380px] overflow-hidden rounded bg-white border border-brand-border/70 flex items-center justify-center">
+                  <img
+                    src="/images/dpiit-certificate.png"
+                    alt="DPIIT Certificate of Recognition DIPP250915"
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+                <div className="pt-2 text-center text-[11px] font-mono text-brand-slate">
+                  Official DPIIT Certificate of Recognition
+                </div>
+              </div>
+
+              {/* Certificate Details */}
+              <div className="lg:col-span-7 space-y-5 text-xs sm:text-sm">
+                <div className="flex flex-wrap items-center gap-2.5">
+                  <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-emerald-50 text-emerald-900 border border-emerald-300 font-mono font-semibold text-xs">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+                    <span>VERIFIED GOVERNMENT OF INDIA RECOGNITION</span>
+                  </span>
+                  <Badge status="Demonstrated" label="Active thru 2035" />
+                </div>
+
+                <div className="space-y-1">
+                  <h3 className="text-xl sm:text-2xl font-bold text-brand-navy">
+                    DPIIT Startup Recognition — Certificate No. DIPP250915
                   </h3>
                   <p className="text-xs text-brand-slate leading-relaxed">
-                    {item.description}
+                    Issued to <strong>HATAK R NON LETHAL SECURITY SOLUTIONS PRIVATE LIMITED</strong> by the Department for Promotion of Industry and Internal Trade (DPIIT), Ministry of Commerce and Industry.
                   </p>
                 </div>
 
-                <div className="shrink-0">
-                  <Badge status="Default" label={item.status} />
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Official DPIIT Certificate Showcase */}
-          <div className="mt-10 p-6 md:p-8 bg-brand-cool-grey-light/40 border border-brand-border rounded-sm">
-            <div className="flex flex-col lg:flex-row items-center gap-8">
-              <div className="lg:w-1/2 rounded-sm overflow-hidden border border-brand-border shadow-elevated bg-white">
-                <img
-                  src="/images/dpiit-certificate.png"
-                  alt="DPIIT Certificate of Recognition DIPP250915"
-                  className="w-full h-auto object-cover"
-                />
-              </div>
-              <div className="lg:w-1/2 space-y-4 text-xs">
-                <div className="inline-flex items-center gap-2 px-2.5 py-1 bg-emerald-50 border border-emerald-300 text-emerald-900 rounded-sm font-mono font-semibold">
-                  <span>✓ VERIFIED GOVERNMENT RECOGNITION</span>
-                </div>
-                <h3 className="text-xl font-bold text-brand-navy">
-                  Government of India — DPIIT Startup Recognition
-                </h3>
-                <p className="text-brand-slate leading-relaxed">
-                  Certificate No: <strong>DIPP250915</strong> issued by the Department for Promotion of Industry and Internal Trade, Ministry of Commerce and Industry. Valid through June 2035 for HATAK R NON LETHAL SECURITY SOLUTIONS PRIVATE LIMITED.
-                </p>
-                <div className="p-3 bg-white border border-brand-border rounded-sm font-mono space-y-1 text-[11px]">
-                  <div className="flex justify-between">
-                    <span className="text-brand-slate">Certificate No:</span>
+                <div className="p-4 bg-brand-cool-grey-light/60 rounded border border-brand-border font-mono text-xs space-y-2">
+                  <div className="flex justify-between border-b border-brand-border/70 pb-1.5">
+                    <span className="text-brand-slate">Certificate Number:</span>
                     <span className="font-bold text-brand-navy">DIPP250915</span>
                   </div>
-                  <div className="flex justify-between">
+                  <div className="flex justify-between border-b border-brand-border/70 pb-1.5">
                     <span className="text-brand-slate">Issue Date:</span>
                     <span className="text-brand-navy">19-03-2026</span>
                   </div>
+                  <div className="flex justify-between border-b border-brand-border/70 pb-1.5">
+                    <span className="text-brand-slate">Validity Period:</span>
+                    <span className="text-brand-navy">Valid through 04-06-2035</span>
+                  </div>
                   <div className="flex justify-between">
-                    <span className="text-brand-slate">Sector:</span>
+                    <span className="text-brand-slate">Industry Classification:</span>
                     <span className="text-brand-navy">Security Solutions / Home Security</span>
                   </div>
                 </div>
+
+                <p className="text-xs text-brand-slate leading-relaxed">
+                  Confirms eligible startup status under the statutory gazette notifications of the Government of India, certifying our incorporation and engineering focus on non-lethal automated security technology.
+                </p>
               </div>
             </div>
           </div>
         </Container>
       </section>
 
-      {/* Partnership Pathways */}
-      <section className="py-12 bg-brand-cool-grey-light/30 border-y border-brand-border">
+      {/* 2. Institutional and Research Collaborations */}
+      <section className="bg-brand-cool-grey-light/50 border-y border-brand-border py-16">
         <Container>
-          <div className="max-w-2xl mb-8">
+          <div className="max-w-3xl space-y-2 mb-8">
             <span className="text-xs font-mono font-bold uppercase tracking-wider text-brand-red">
-              Collaboration Framework
+              Section 02 • Academic & Research Base
             </span>
-            <h2 className="text-2xl font-extrabold text-brand-navy mt-1">
-              Structured Partnership Channels
+            <h2 className="text-2xl sm:text-3xl font-bold text-brand-navy">
+              Institutional & Research Collaborations
             </h2>
-            <p className="text-xs text-brand-slate mt-2 leading-relaxed">
-              We collaborate with established defense contractors, physical security integrators, and academic labs across three defined models:
+            <p className="text-sm text-brand-slate leading-relaxed">
+              Foundational research roots, laboratory facilities, and intellectual property development supported by recognized institutions.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* Velammal Institute of Technology */}
+            <div className="bg-white p-6 rounded-lg border border-brand-border shadow-subtle space-y-4">
+              <div className="flex items-center gap-3">
+                <div className="p-2.5 rounded bg-brand-cool-grey text-brand-navy">
+                  <Building className="w-5 h-5 text-brand-red" />
+                </div>
+                <div>
+                  <h3 className="font-bold text-base text-brand-navy">
+                    Velammal Institute of Technology
+                  </h3>
+                  <span className="text-xs font-mono text-brand-slate">
+                    Chennai, Tamil Nadu • Incubation & Lab Facilities
+                  </span>
+                </div>
+              </div>
+
+              <p className="text-xs text-brand-slate leading-relaxed">
+                Primary institutional incubation base. The institution operates under the Ministry of Education's Institution's Innovation Council (IIC) and holds NBA & NAAC 'A' Grade accreditations. Research faculty and student engineers collaborate on applied mechanics, mechatronics, and embedded neural computing.
+              </p>
+
+              <div className="p-3 bg-brand-cool-grey-light rounded text-xs font-mono text-brand-navy space-y-1">
+                <div>Affiliation: Anna University, Chennai</div>
+                <div>Campus: Panchetti, Ponneri, Chennai - 601 204</div>
+              </div>
+            </div>
+
+            {/* Indian Patent Office Record */}
+            <div className="bg-white p-6 rounded-lg border border-brand-border shadow-subtle space-y-4">
+              <div className="flex items-center gap-3">
+                <div className="p-2.5 rounded bg-brand-cool-grey text-brand-navy">
+                  <FileText className="w-5 h-5 text-brand-navy" />
+                </div>
+                <div>
+                  <h3 className="font-bold text-base text-brand-navy">
+                    Indian Patent Office (Statutory Filing)
+                  </h3>
+                  <span className="text-xs font-mono text-brand-slate">
+                    Application No: 202141014878 • Patent Pending
+                  </span>
+                </div>
+              </div>
+
+              <p className="text-xs text-brand-slate leading-relaxed">
+                Filed application covering automated motorized tracking, CNN-based classification, and non-lethal perimeter targeting mechanism. Statutory review is ongoing; reference to application filings does not constitute a granted patent.
+              </p>
+
+              <div className="p-3 bg-brand-cool-grey-light rounded text-xs font-mono text-brand-navy space-y-1">
+                <div>Technical Domains: Applied Mechanics & Machine Vision</div>
+                <div>Status: Under Examination / Patent Pending</div>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* 3. Confirmed Industry Partners & Pathways */}
+      <section>
+        <Container>
+          <div className="max-w-3xl space-y-2 mb-8">
+            <span className="text-xs font-mono font-bold uppercase tracking-wider text-brand-red">
+              Section 03 • Industrial Collaboration Channels
+            </span>
+            <h2 className="text-2xl sm:text-3xl font-bold text-brand-navy">
+              Industry Engagement Channels
+            </h2>
+            <p className="text-sm text-brand-slate leading-relaxed">
+              We structure our external commercial relationships through three clearly defined engagement models:
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <Card
-              header={
-                <span className="text-xs font-mono font-bold text-brand-navy">
-                  CHANNEL 01
-                </span>
-              }
-            >
+            <Card header={<span className="font-mono text-xs font-bold text-brand-navy">CHANNEL 01 • FIELD PILOTS</span>}>
               <div className="space-y-3 text-xs">
-                <h3 className="font-bold text-brand-navy text-sm">
-                  Field Pilot & Facility Hosts
+                <h3 className="font-bold text-base text-brand-navy">
+                  Pilot Site Hosts
                 </h3>
                 <p className="text-brand-slate leading-relaxed">
-                  Industrial operators who host instrumented test arrays along boundary fences to benchmark detection metrics against operational false alarm criteria.
+                  Industrial perimeter operators, logistics yards, and commercial facility managers hosting supervised node installations to benchmark false-alarm mitigation.
                 </p>
                 <div className="pt-2">
                   <Link to="/contact?type=pilot" className="text-brand-red font-semibold hover:underline flex items-center gap-1">
-                    Apply as Pilot Host <ArrowRight className="w-3 h-3" />
+                    Apply as Pilot Host <ArrowRight className="w-3.5 h-3.5" />
                   </Link>
                 </div>
               </div>
             </Card>
 
-            <Card
-              header={
-                <span className="text-xs font-mono font-bold text-brand-navy">
-                  CHANNEL 02
-                </span>
-              }
-            >
+            <Card header={<span className="font-mono text-xs font-bold text-brand-navy">CHANNEL 02 • HARDWARE OEMS</span>}>
               <div className="space-y-3 text-xs">
-                <h3 className="font-bold text-brand-navy text-sm">
-                  Hardware & Optics OEMs
+                <h3 className="font-bold text-base text-brand-navy">
+                  Hardware & Component OEMs
                 </h3>
                 <p className="text-brand-slate leading-relaxed">
-                  Manufacturers of precision industrial stepper motors, continuous slip rings, and ruggedized optical lenses seeking embedded reference designs.
+                  Manufacturers of precision stepper motors, optical lenses, slip rings, and industrial camera sensors seeking embedded co-design integration.
                 </p>
                 <div className="pt-2">
                   <Link to="/contact" className="text-brand-red font-semibold hover:underline flex items-center gap-1">
-                    OEM Integration <ArrowRight className="w-3 h-3" />
+                    OEM Integration <ArrowRight className="w-3.5 h-3.5" />
                   </Link>
                 </div>
               </div>
             </Card>
 
-            <Card
-              header={
-                <span className="text-xs font-mono font-bold text-brand-navy">
-                  CHANNEL 03
-                </span>
-              }
-            >
+            <Card header={<span className="font-mono text-xs font-bold text-brand-navy">CHANNEL 03 • VMS INTEGRATORS</span>}>
               <div className="space-y-3 text-xs">
-                <h3 className="font-bold text-brand-navy text-sm">
-                  Security Integrators & VMS Vendors
+                <h3 className="font-bold text-base text-brand-navy">
+                  Physical Security Integrators
                 </h3>
                 <p className="text-brand-slate leading-relaxed">
-                  Software companies developing video management software (VMS) interested in integrating ONVIF/RTSP vector telemetry metadata from HATAK R™ nodes.
+                  Systems integrators and Video Management Software (VMS) providers integrating ONVIF/RTSP vector telemetry metadata into centralized command consoles.
                 </p>
                 <div className="pt-2">
                   <Link to="/contact" className="text-brand-red font-semibold hover:underline flex items-center gap-1">
-                    VMS Integration <ArrowRight className="w-3 h-3" />
+                    VMS Partnership <ArrowRight className="w-3.5 h-3.5" />
                   </Link>
                 </div>
               </div>
@@ -202,19 +251,19 @@ export const PartnersPage: React.FC = () => {
         </Container>
       </section>
 
-      {/* CTA */}
+      {/* CTA Section */}
       <section>
         <Container>
-          <div className="border border-brand-border bg-white rounded-sm p-8 text-center space-y-4">
-            <h3 className="text-2xl font-bold text-brand-navy">
-              Discuss Institutional Affiliations
+          <div className="bg-brand-navy text-white rounded-lg p-8 md:p-10 text-center space-y-4">
+            <h3 className="text-2xl sm:text-3xl font-bold">
+              Discuss Institutional Affiliations & Pilot Integration
             </h3>
-            <p className="text-xs text-brand-slate max-w-lg mx-auto leading-relaxed">
-              For technology transfer offices, government deep-tech funds, or institutional partnerships, reach out directly to our corporate development desk.
+            <p className="text-xs sm:text-sm text-slate-300 max-w-xl mx-auto leading-relaxed">
+              For technology transfer offices, government innovation programs, or industrial perimeter pilots, connect with our corporate development desk.
             </p>
-            <div className="pt-2">
+            <div className="pt-3">
               <Link to="/contact">
-                <Button variant="primary" size="lg">
+                <Button variant="red" size="md">
                   Submit Institutional Partnership Inquiry
                 </Button>
               </Link>
