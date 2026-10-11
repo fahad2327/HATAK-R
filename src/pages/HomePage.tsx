@@ -108,7 +108,10 @@ export const HomePage: React.FC = () => {
 
                 <div className="space-y-2 text-xs">
                   <div className="flex items-center justify-between font-mono">
-                    <span className="font-bold text-brand-navy">SYSTEM BENCHMARK UNIT</span>
+                    <span className="font-bold text-brand-navy flex items-center gap-1.5">
+                      <img src="/images/logo-transparent.png" alt="Hatak R" className="w-4 h-4 object-contain" />
+                      SYSTEM BENCHMARK UNIT
+                    </span>
                     <span className="text-brand-slate">Stage: Prototype v1.0</span>
                   </div>
                   <p className="text-brand-slate leading-relaxed">
