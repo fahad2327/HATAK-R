@@ -92,7 +92,7 @@ export const HomePage: React.FC = () => {
               <div className="bg-white p-5 rounded-xl border border-brand-border shadow-elevated space-y-4">
                 <div className="aspect-[4/3] rounded-lg overflow-hidden bg-slate-100 border border-brand-border relative group">
                   <img
-                    src="/images/prototype.png"
+                    src="/images/prototype-clean.png"
                     alt="Hatak R Physical Prototype Bench Model"
                     className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-300"
                   />

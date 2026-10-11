@@ -103,7 +103,7 @@ export const ResearchPage: React.FC = () => {
             <div className="lg:col-span-5 bg-white p-4 rounded-xl border border-brand-border shadow-subtle space-y-3">
               <div className="aspect-[4/3] rounded-lg overflow-hidden bg-slate-100 border border-brand-border">
                 <img
-                  src="/images/prototype.png"
+                  src="/images/prototype-clean.png"
                   alt="Hatak R Physical Bench Prototype"
                   className="w-full h-full object-cover"
                 />

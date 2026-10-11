@@ -249,7 +249,7 @@ export const TechnologyPage: React.FC = () => {
             <div className="lg:col-span-5 bg-white p-5 rounded-xl border border-brand-border shadow-subtle space-y-4">
               <div className="aspect-[4/3] rounded-lg overflow-hidden bg-slate-100 border border-brand-border">
                 <img
-                  src="/images/prototype.png"
+                  src="/images/prototype-clean.png"
                   alt="Hatak R Physical Prototype Bench Model"
                   className="w-full h-full object-cover"
                 />
